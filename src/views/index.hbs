@@ -1,0 +1,95 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card card-body p-4 rounded-0 bg-dark text-white">
+            <form action="/tasks/add" method="post">
+              <div class="flex">
+                <label class="" for="title">Escribi un titulo</label>
+                <input
+                  class="form-control rounded-0 bg-dark text-white"
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                /></div>
+              <div class="">
+                <label class="w-full" for="description">Escribi una description</label>
+                <textarea
+                  class="form-control rounded-0 bg-dark text-white"
+                  name="description"
+                  id="description"
+                  placeholder="Description"
+                ></textarea></div>
+              <button class="btn btn-primary mt-2">Add</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          {{#if taskFind}}
+            <table class="table table-bordered table-hover table-dark">
+              <thead>
+                <tr>
+                  <th>N</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Operations</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each taskFind}}
+                  <tr>
+                    <td>{{@index}}</td>
+                    <td>{{title}}</td>
+                    <td>{{description}}</td>
+                    <td>
+
+                      {{#if done}}
+                        <a
+                          href="/tasks/{{_id}}/toggleDone"
+                          class="btn btn-dark"
+                        >Undone</a>
+                      {{else}}
+                        <a
+                          href="/tasks/{{_id}}/toggleDone"
+                          class="btn btn-success"
+                        >Done</a>
+
+                      {{/if}}
+                      <a
+                        href="/tasks/{{_id}}/delete"
+                        class="btn btn-danger"
+                      >Delete</a>
+                      <a
+                        href="/tasks/{{_id}}/edit"
+                        class="btn btn-info"
+                      >Edit</a>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          {{else}}
+            <div class="h-100 d-flex align-items-center justify-content-center">
+              <div class="text-center text-white">
+                <h1>No Tasks</h1>
+                <img
+                  src="/icon/file-document-svgrepo-com.svg"
+                  alt=""
+                  class="img"
+                />
+              </div>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

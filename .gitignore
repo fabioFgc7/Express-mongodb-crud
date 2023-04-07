@@ -1,0 +1,5 @@
+.ENV
+# Node depence
+node_modules
+# Production
+dist
